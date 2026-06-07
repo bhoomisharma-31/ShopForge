@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Core Design Tokens ─────────────────────────────── */
+:root {
+  --holo-bg:        #020810;
+  --holo-deep:      #040d1a;
+  --holo-card:      rgba(8, 20, 44, 0.7);
+  --holo-glass:     rgba(14, 35, 72, 0.5);
+  --holo-border:    rgba(56, 182, 255, 0.15);
+  --holo-border-hi: rgba(56, 182, 255, 0.4);
+  --holo-cyan:      #38b6ff;
+  --holo-cyan-dim:  rgba(56, 182, 255, 0.12);
+  --holo-cyan-glow: rgba(56, 182, 255, 0.3);
+  --holo-blue:      #0066ff;
+  --holo-teal:      #00d4ff;
+  --holo-text:      #e8f4ff;
+  --holo-muted:     rgba(232, 244, 255, 0.45);
+  --holo-subtle:    rgba(232, 244, 255, 0.15);
+  --font-display:   'Syne', sans-serif;
+  --font-body:      'Space Grotesk', sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--holo-bg);
+    color: var(--holo-text);
+    font-family: var(--font-body);
+    cursor: none;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--holo-deep); }
+  ::-webkit-scrollbar-thumb { background: rgba(56,182,255,0.3); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--holo-cyan); }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm
+           px-6 py-2.5 text-sm font-semibold uppercase tracking-widest
+           transition-all duration-300 disabled:opacity-50;
+    background: linear-gradient(135deg, rgba(56,182,255,0.2), rgba(0,102,255,0.15));
+    border: 1px solid rgba(56,182,255,0.5);
+    color: #38b6ff;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(56,182,255,0.15), inset 0 0 20px rgba(56,182,255,0.05);
+    font-family: var(--font-mono);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, rgba(56,182,255,0.3), rgba(0,102,255,0.25));
+    border-color: rgba(56,182,255,0.8);
+    box-shadow: 0 0 40px rgba(56,182,255,0.35), inset 0 0 30px rgba(56,182,255,0.1);
+    transform: translateY(-1px);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm
+           px-6 py-2.5 text-sm font-semibold uppercase tracking-widest
+           transition-all duration-300 disabled:opacity-50;
+    background: transparent;
+    border: 1px solid rgba(232,244,255,0.15);
+    color: rgba(232,244,255,0.6);
+    font-family: var(--font-mono);
+  }
+  .btn-secondary:hover {
+    border-color: rgba(232,244,255,0.35);
+    color: var(--holo-text);
+    background: rgba(232,244,255,0.04);
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm
+           px-5 py-2.5 text-sm font-semibold transition-all;
+    background: rgba(255,50,50,0.15);
+    border: 1px solid rgba(255,50,50,0.4);
+    color: #ff6666;
+  }
+  .btn-danger:hover { background: rgba(255,50,50,0.25); }
+
+  /* ── Inputs ── */
+  .input-field {
+    @apply block w-full rounded-sm px-4 py-2.5 text-sm transition-all;
+    background: rgba(8,20,44,0.6);
+    border: 1px solid rgba(56,182,255,0.15);
+    color: var(--holo-text);
+    font-family: var(--font-body);
+    backdrop-filter: blur(8px);
+  }
+  .input-field::placeholder { color: rgba(232,244,255,0.25); }
+  .input-field:focus {
+    outline: none;
+    border-color: rgba(56,182,255,0.5);
+    box-shadow: 0 0 20px rgba(56,182,255,0.1);
+  }
+
+  /* ── Glass Card ── */
+  .card {
+    background: rgba(8,20,44,0.6);
+    border: 1px solid rgba(56,182,255,0.12);
+    backdrop-filter: blur(16px);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(56,182,255,0.3);
+    box-shadow: 0 0 30px rgba(56,182,255,0.08);
+  }
+
+  /* ── Badge ── */
+  .badge {
+    @apply inline-flex items-center rounded-sm px-2.5 py-0.5 text-xs font-medium uppercase tracking-wider;
+    background: rgba(56,182,255,0.1);
+    border: 1px solid rgba(56,182,255,0.3);
+    color: var(--holo-cyan);
+    font-family: var(--font-mono);
+  }
+
+  /* ── Section Label ── */
+  .section-label {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: var(--holo-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .section-label::before { content: '//'; opacity: 0.4; }
+
+  /* ── Status badges ── */
+  .status-pending    { background:rgba(250,200,50,0.12);  color:#fac832; border:1px solid rgba(250,200,50,0.3);  }
+  .status-processing { background:rgba(56,182,255,0.12);  color:#38b6ff; border:1px solid rgba(56,182,255,0.3);  }
+  .status-shipped    { background:rgba(160,100,255,0.12); color:#a064ff; border:1px solid rgba(160,100,255,0.3); }
+  .status-delivered  { background:rgba(50,220,150,0.12);  color:#32dc96; border:1px solid rgba(50,220,150,0.3);  }
+  .status-cancelled  { background:rgba(255,80,80,0.12);   color:#ff5050; border:1px solid rgba(255,80,80,0.3);   }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Custom Cursor ─────────────────────────────────── */
+#cursor {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  width: 8px; height: 8px;
+  background: var(--holo-cyan);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 0 12px var(--holo-cyan), 0 0 24px rgba(56,182,255,0.4);
+}
+#cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(56,182,255,0.5);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: width 0.25s, height 0.25s, opacity 0.25s;
+}
+
+/* ── Holographic scan line overlay ─────────────────── */
+.holo-scanlines {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(56,182,255,0.018) 2px,
+    rgba(56,182,255,0.018) 4px
+  );
+}
+
+/* ── Glass shimmer animation ───────────────────────── */
+@keyframes glassShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(56,182,255,0.2); }
+  50%       { box-shadow: 0 0 40px rgba(56,182,255,0.5); }
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* ── Marquee ───────────────────────────────────────── */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }

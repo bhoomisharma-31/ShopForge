@@ -1,0 +1,1 @@
+// ShopForge — Star Rating Component
