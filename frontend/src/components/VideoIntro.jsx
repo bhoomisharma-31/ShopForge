@@ -88,7 +88,11 @@ export default function VideoIntro({ onFinished }) {
         }
         #intro-video {
           width: 100%; height: 100%; object-fit: cover;
-          filter: contrast(1.1) saturate(1.2) brightness(1.02);
+          /* Display-level enhancements without transcoding/filters */
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          color-rendering: optimizeQuality;
+          will-change: transform;
         }
 
         /* ── Overlays ── */
@@ -197,7 +201,7 @@ export default function VideoIntro({ onFinished }) {
 
       <div id="video-intro" className={phase !== 'playing' ? 'phase-shatter' : ''}>
         <video ref={videoRef} id="intro-video" autoPlay muted playsInline preload="auto">
-          <source src="/shopforgevideo.mp4" type="video/mp4"/>
+          <source src="/videos/shopforgevideo.mp4" type="video/mp4"/>
         </video>
 
         {/* cinematic overlays */}

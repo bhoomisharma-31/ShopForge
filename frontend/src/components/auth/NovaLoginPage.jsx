@@ -129,7 +129,11 @@ export default function NovaLoginPage() {
           object-fit: cover;
           object-position: 70% center;
           display: block;
-          filter: contrast(1.08) saturate(1.15) brightness(1.02);
+          /* Display-level enhancements without transcoding/filters */
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          color-rendering: optimizeQuality;
+          will-change: transform;
         }
 
 
@@ -389,7 +393,7 @@ export default function NovaLoginPage() {
           playsInline
           preload="auto"
         >
-          <source src="/nova-login-intro.mp4" type="video/mp4" />
+          <source src="/videos/nova-login-intro.mp4" type="video/mp4" />
         </video>
 
 
